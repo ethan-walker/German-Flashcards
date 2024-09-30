@@ -1,0 +1,33 @@
+[
+   {
+      "name": "1.1 Beziehungen innerhalb der Familie (1/2)",
+      "termList": [
+         {
+            "name": "Alleinerziehende",
+            "def": "single parent",
+            "gender": 3,
+            "type": "noun"
+         },
+         {
+            "name": "Auffassung(en)",
+            "def": "attitude, view",
+            "gender": 1,
+            "type": "noun"
+         },
+         {
+            "name": "Aufgabe(n)",
+            "def": "job, task",
+            "gender": 1,
+            "type": "noun"
+         },
+         {
+            "name": "auf jemanden aufpassen",
+            "def": "to look after someone",
+            "type": "phrase"
+         }
+      ]
+   },
+   {
+      "name": "1.1 Beziehungen innerhalb der Familie (2/2)"
+   }
+]
