@@ -13,7 +13,7 @@ function flashcardHandler(elem) {
       moving
 		;
 
-   elem.onmousedown = beginDrag;
+   elem.onmousedown = elem.ontouchstart = beginDrag;
 
    function cardDisp() {
       centerPos = x + initialX + (cardWidth / 2);
@@ -23,20 +23,22 @@ function flashcardHandler(elem) {
    function beginDrag(e) {
       x = y = 0;
       rect = elem.getBoundingClientRect();
+
       initialX = rect.x;
       initialY = rect.y;
       cardWidth = rect.width;
 
-      oldCursorX = e.clientX;
-      oldCursorY = e.clientY;
+      oldCursorX = e.clientX || e.targetTouches[0].pageX;
+      oldCursorY = e.clientY || e.targetTouches[0].pageY;
 
-      document.onmouseup = endDrag;
-		document.onmousemove = updateDragPos;
+      document.onmouseup = document.ontouchend = endDrag;
+		document.onmousemove = document.ontouchmove = updateDragPos;
+      console.log("down")
    }
 
    function updateDragPos(e) {
-      let deltaX = e.clientX - oldCursorX;
-		let deltaY = e.clientY - oldCursorY;
+      let deltaX = (e.clientX || e.targetTouches[0].pageX) - oldCursorX;
+		let deltaY = (e.clientY || e.targetTouches[0].pageY) - oldCursorY;
 
 		x += deltaX;
       y += deltaY;
@@ -44,8 +46,8 @@ function flashcardHandler(elem) {
       elem.style.translate = x + "px " + y + "px";
       elem.style.rotate = cardDisp() * 10 + "deg";
 
-      oldCursorX = e.clientX;
-      oldCursorY = e.clientY;
+      oldCursorX = e.clientX || e.targetTouches[0].pageX;
+      oldCursorY = e.clientY || e.targetTouches[0].pageY;
 
       document.body.style.setProperty("--bg-opacity", (Math.abs(cardDisp()) * 1.7));
 
@@ -56,10 +58,12 @@ function flashcardHandler(elem) {
          document.body.style.setProperty("--bg-color","var(--color-red)")
       }
       moving = true;
+      console.log("IT MOVED")
    }
    function endDrag(e) {
-		document.onmouseup = null;
-		document.onmousemove = null;
+      console.log("up");
+		document.onmouseup = document.ontouchend = null;
+		document.onmousemove = document.ontouchmove = null;
 
       if(Math.abs(cardDisp()) < 0.5) {
          elem.classList.add()
