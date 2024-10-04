@@ -33,7 +33,6 @@ function flashcardHandler(elem) {
 
       document.onmouseup = document.ontouchend = endDrag;
 		document.onmousemove = document.ontouchmove = updateDragPos;
-      console.log("down")
    }
 
    function updateDragPos(e) {
@@ -58,10 +57,8 @@ function flashcardHandler(elem) {
          document.body.style.setProperty("--bg-color","var(--color-red)")
       }
       moving = true;
-      console.log("IT MOVED")
    }
    function endDrag(e) {
-      console.log("up");
 		document.onmouseup = document.ontouchend = null;
 		document.onmousemove = document.ontouchmove = null;
 
@@ -136,7 +133,8 @@ function flashcardHandler(elem) {
          document.body.style.setProperty("--bg-opacity", 0);
       }, 400);
 
-      if (!moving) {
+      // BECAUSE FOR SOME REASON THE MOUSEUP EVENT TRIGGERS ON MOBILE
+      if (!moving && e.type !== "mouseup") {
          elem.classList.toggle("flipped");
       }
       moving = false;

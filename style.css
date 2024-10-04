@@ -80,8 +80,9 @@ main {
 .flashcard-container {
    display: grid;
    grid-template-areas: "pile";
-   width: 500px;
-   height: 300px;
+   width: min(500px, calc(100vw - 2rem));
+   font-size: clamp(6px, 1rem, 3vw);
+   aspect-ratio: 5 / 3;
 
    > * {
       grid-area: pile;
