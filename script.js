@@ -134,7 +134,7 @@ function flashcardHandler(elem) {
       }, 400);
 
       // BECAUSE FOR SOME REASON THE MOUSEUP EVENT TRIGGERS ON MOBILE
-      if (!moving && e.type !== "mouseup") {
+      if (!moving && e.type !== "touchend") {
          elem.classList.toggle("flipped");
       }
       moving = false;
